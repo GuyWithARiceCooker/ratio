@@ -19,14 +19,14 @@
       "bundleIdentifier": "app.ratio.camera",
       "supportsTablet": false,
       "infoPlist": {
-        "NSCameraUsageDescription": "A Ratio a képernyő arányában fényképez."
+        "NSCameraUsageDescription": "Ratio takes photos at your screen's ratio."
       }
     },
     "plugins": [
       [
         "react-native-vision-camera",
         {
-          "cameraPermissionText": "A Ratio a képernyő arányában fényképez.",
+          "cameraPermissionText": "Ratio takes photos at your screen's ratio.",
           "enableMicrophonePermission": false,
           "enableFrameProcessors": false
         }
@@ -34,8 +34,8 @@
       [
         "expo-media-library",
         {
-          "photosPermission": "A Ratio elmenti a képeket a galériába.",
-          "savePhotosPermission": "A Ratio elmenti a képeket a galériába.",
+          "photosPermission": "Ratio saves photos to your gallery.",
+          "savePhotosPermission": "Ratio saves photos to your gallery.",
           "isAccessMediaLocationEnabled": false
         }
       ]
