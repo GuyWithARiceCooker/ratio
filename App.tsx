@@ -140,7 +140,7 @@ function AppInner() {
         ratio: formatRatio(result.width, result.height),
       });
     } catch {
-      setNotice("A fotó nem készült el. Próbáld újra.");
+      setNotice("The photo didn't come out. Try again.");
     } finally {
       setBusy(false);
     }
@@ -150,24 +150,24 @@ function AppInner() {
     if (!shot) return;
     const perm = await MediaLibrary.requestPermissionsAsync(true);
     if (!perm.granted) {
-      setNotice("A galéria engedélye hiányzik, a kép csak itt látszik.");
+      setNotice("Gallery permission is missing; the photo is only visible here.");
       return;
     }
     await MediaLibrary.saveToLibraryAsync(shot.uri);
     setShot(null);
-    setNotice("Elmentve a galériába.");
+    setNotice("Saved to gallery.");
   }, [shot]);
 
   if (!hasPermission) {
     return (
-      <View style={styles.gate}>
+      <View style={styles.gate}
         <StatusBar style="light" />
         <Text style={styles.wordmark}>Ratio</Text>
-        <Text style={styles.gateCopy}>
-          Natív kamera. A kép a telefon képernyőjének arányában készül, a jobb oldali sín húzza a fókuszt.
+        <Text style={styles.gateCopy}
+          Native camera. Photos are taken at your phone's screen ratio; the rail on the right drags focus.
         </Text>
         <Pressable style={styles.primary} onPress={() => void requestPermission()}>
-          <Text style={styles.primaryText}>Kamera engedélyezése</Text>
+          <Text style={styles.primaryText}>Allow camera</Text>
         </Pressable>
       </View>
     );
@@ -175,31 +175,31 @@ function AppInner() {
 
   if (!device) {
     return (
-      <View style={styles.gate}>
+      <View style={styles.gate}
         <Text style={styles.wordmark}>Ratio</Text>
-        <Text style={styles.gateCopy}>Ezen az oldalon nincs kamera.</Text>
+        <Text style={styles.gateCopy}>No camera on this device.</Text>
         <Pressable style={styles.primary} onPress={() => setFacing((f) => (f === "back" ? "front" : "back"))}>
-          <Text style={styles.primaryText}>Másik lencse</Text>
+          <Text style={styles.primaryText}>Other lens</Text>
         </Pressable>
       </View>
     );
   }
 
   return (
-    <View style={styles.root}>
+    <View style={styles.root}
       <StatusBar style="light" />
       <Camera
         ref={camera}
         style={StyleSheet.absoluteFill}
         device={device}
-        isActive={!shot}
+        isActive=!{shot}
         photo
         torch={torch && device.hasTorch ? "on" : "off"}
         enableZoomGesture
       />
 
       {grid && (
-        <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+        <View pointerEvents="none" style={StyleSheet.absoluteFill}
           <View style={[styles.vLine, { left: "33.33%" }]} />
           <View style={[styles.vLine, { left: "66.66%" }]} />
           <View style={[styles.hLine, { top: "33.33%" }]} />
@@ -207,7 +207,7 @@ function AppInner() {
         </View>
       )}
 
-      <View pointerEvents="none" style={styles.corners}>
+      <View pointerEvents="none" style={styles.corners}
         <View style={[styles.corner, styles.cornerTL]} />
         <View style={[styles.corner, styles.cornerTR]} />
         <View style={[styles.corner, styles.cornerBL]} />
@@ -219,9 +219,9 @@ function AppInner() {
           <Text style={styles.wordmark}>Ratio</Text>
           <Text style={styles.kicker}>SCREEN</Text>
         </View>
-        <View style={styles.headerRight}>
+        <View style={styles.headerRight}
           <Text style={styles.ratio}>{ratio}</Text>
-          <Text style={styles.pixels}>
+          <Text style={styles.pixels}
             {Math.round(dims.width)}×{Math.round(dims.height)}
           </Text>
         </View>
@@ -237,15 +237,15 @@ function AppInner() {
 
       <View style={[styles.dock, { paddingBottom: insets.bottom + 18 }]}>
         <Pressable style={styles.ghost} onPress={() => setGrid((v) => !v)}>
-          <Text style={styles.ghostText}>{grid ? "Rács" : "Rács ki"}</Text>
+          <Text style={styles.ghostText}>{grid ? "Grid" : "Grid off"}</Text>
         </Pressable>
-        <Pressable style={styles.shutter} onPress={() => void shoot()} disabled={busy}>
+        <Pressable style={styles.shutter} onPress={() => void shoot()} disabled={busy}
           {busy ? <ActivityIndicator color={INK} /> : <View style={styles.shutterCore} />}
         </Pressable>
-        <View style={styles.dockRight}>
+        <View style={styles.dockRight}
           {device.hasTorch && (
             <Pressable style={styles.ghost} onPress={() => setTorch((v) => !v)}>
-              <Text style={styles.ghostText}>{torch ? "Lámpa ki" : "Lámpa"}</Text>
+              <Text style={styles.ghostText}>{torch ? "Light off" : "Light"}</Text>
             </Pressable>
           )}
           <Pressable
@@ -255,24 +255,24 @@ function AppInner() {
               setFacing((f) => (f === "back" ? "front" : "back"));
             }}
           >
-            <Text style={styles.ghostText}>{facing === "back" ? "Elöl" : "Hátul"}</Text>
+            <Text style={styles.ghostText}>{facing === "back" ? "Front" : "Back"}</Text>
           </Pressable>
         </View>
       </View>
 
       {shot && (
-        <View style={styles.review}>
+        <View style={styles.review}
           <Image source={{ uri: shot.uri }} style={StyleSheet.absoluteFill} resizeMode="contain" />
           <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
-            <Text style={styles.wordmark}>Kép</Text>
+            <Text style={styles.wordmark}>Photo</Text>
             <Text style={styles.ratio}>{shot.ratio}</Text>
           </View>
           <View style={[styles.dock, { paddingBottom: insets.bottom + 18 }]}>
             <Pressable style={styles.ghost} onPress={() => setShot(null)}>
-              <Text style={styles.ghostText}>Elvet</Text>
+              <Text style={styles.ghostText}>Discard</Text>
             </Pressable>
             <Pressable style={styles.primary} onPress={() => void saveShot()}>
-              <Text style={styles.primaryText}>Mentés</Text>
+              <Text style={styles.primaryText}>Save</Text>
             </Pressable>
           </View>
         </View>
@@ -281,7 +281,7 @@ function AppInner() {
   );
 }
 
-function FocusRail({
+function FocusRail(
   unit,
   label,
   top,
@@ -296,7 +296,7 @@ function FocusRail({
 }) {
   const track = useRef<View>(null);
   const fromPageY = (pageY: number) => {
-    track.current?.measure((_x, _y, _w, h, _px, py) => {
+    track.current?.measure((x, y, w, h, px, py) => {
       if (!h) return;
       onChange(1 - Math.min(1, Math.max(0, (pageY - py) / h)));
     });
@@ -319,7 +319,7 @@ function FocusRail({
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create(
   root: { flex: 1, backgroundColor: INK },
   gate: {
     flex: 1,
