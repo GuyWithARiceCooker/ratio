@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "Ratio",
+    "slug": "ratio",
+    "version": "1.0.0",
+    "orientation": "default",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": false,
+    "android": {
+      "package": "app.ratio.camera",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "ios": {
+      "bundleIdentifier": "app.ratio.camera",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "A Ratio a képernyő arányában fényképez."
+      }
+    },
+    "plugins": [
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "A Ratio a képernyő arányában fényképez.",
+          "enableMicrophonePermission": false,
+          "enableFrameProcessors": false
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "A Ratio elmenti a képeket a galériába.",
+          "savePhotosPermission": "A Ratio elmenti a képeket a galériába.",
+          "isAccessMediaLocationEnabled": false
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "20585ef8-5449-4f74-9ef4-91dbc954788b"
+      }
+    }
+  }
+}
