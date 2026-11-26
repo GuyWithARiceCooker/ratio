@@ -1,0 +1,3 @@
+Ratio is a native camera app that captures photos cropped to your phone's current screen aspect ratio.
+
+Use the right-side focus rail to pull focus, switch lenses, toggle the torch and grid, then save shots straight to your gallery. What you see fills the frame — no letterboxing, no awkward crop after the fact.

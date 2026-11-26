@@ -1,0 +1,1 @@
+Native camera that shoots in your screen's aspect ratio, with a focus rail
